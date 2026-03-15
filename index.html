@@ -243,6 +243,12 @@ td.weekend-cell { background: #0b0f16; }
 .pcard.is-published { border-left-color: var(--green) !important; }
 .pcard.is-published .pcard-ed { color: var(--green) !important; }
 
+/* Drag and drop */
+.pcard[draggable] { cursor: grab; }
+.pcard[draggable]:active { cursor: grabbing; }
+.pcard.dragging { opacity: 0.35; pointer-events: none; }
+.drop-target { background: rgba(59,130,246,0.08) !important; outline: 2px dashed var(--blue); outline-offset: -2px; }
+
 /* Botão rápido de link */
 .pcard-addlink {
   display: none;
@@ -822,7 +828,12 @@ function renderCal() {
         const addLinkBtn = !p.link
         ? `<button class="pcard-addlink" onclick="event.stopPropagation();openLinkPopup(${p.id},this)">＋ link do post</button>`
         : '';
-        return `<div class="pcard ${p.link?'is-published':''}" style="--ec:${color(p.editoria)}" onclick="openEdit(${p.id})">
+        return `<div class="pcard ${p.link?'is-published':''}" style="--ec:${color(p.editoria)}"
+            draggable="true"
+            data-id="${p.id}"
+            ondragstart="dragStart(event,${p.id})"
+            ondragend="dragEnd(event)"
+            onclick="openEdit(${p.id})">
           <div class="pcard-ed">${p.editoria}${pubDot}</div>
           <div class="pcard-pauta ${!p.pauta?'empty':''}">${p.pauta||'—'}</div>
           <div class="pcard-meta">
@@ -833,7 +844,10 @@ function renderCal() {
         </div>`;
       }).join('');
       cells += `<button class="add-slot" onclick="openAddSlot('${d.date}','${hora}')">＋</button>`;
-      bodyHtml += `<td class="${wk}">${cells}</td>`;
+      bodyHtml += `<td class="${wk}" data-date="${d.date}" data-hora="${hora}"
+        ondragover="dragOver(event)"
+        ondragleave="dragLeave(event)"
+        ondrop="drop(event)">${cells}</td>`;
     });
     bodyHtml += '</tr>';
   });
@@ -1096,6 +1110,60 @@ function savePost() {
     toast('Post adicionado!');
   }
   persist(); closeModal(); render();
+}
+
+// ── DRAG AND DROP ─────────────────────────────────────────────────────────────
+let draggingId = null;
+
+function dragStart(event, id) {
+  draggingId = id;
+  event.dataTransfer.effectAllowed = 'move';
+  event.dataTransfer.setData('text/plain', id);
+  // Pequeno delay para o browser renderizar antes de esconder o card
+  setTimeout(() => {
+    const el = document.querySelector(`.pcard[data-id="${id}"]`);
+    if (el) el.classList.add('dragging');
+  }, 0);
+}
+
+function dragEnd(event) {
+  draggingId = null;
+  document.querySelectorAll('.pcard.dragging').forEach(el => el.classList.remove('dragging'));
+  document.querySelectorAll('.drop-target').forEach(el => el.classList.remove('drop-target'));
+}
+
+function dragOver(event) {
+  event.preventDefault();
+  event.dataTransfer.dropEffect = 'move';
+  const td = event.currentTarget;
+  td.classList.add('drop-target');
+}
+
+function dragLeave(event) {
+  // Só remove se sair realmente da célula (não de um filho)
+  const td = event.currentTarget;
+  if (!td.contains(event.relatedTarget)) {
+    td.classList.remove('drop-target');
+  }
+}
+
+function drop(event) {
+  event.preventDefault();
+  const td = event.currentTarget;
+  td.classList.remove('drop-target');
+  const id = parseInt(event.dataTransfer.getData('text/plain'));
+  const newDate = td.dataset.date;
+  const newHora = td.dataset.hora;
+  if (!newDate || !newHora || isNaN(id)) return;
+  const i = posts.findIndex(x => x.id === id);
+  if (i < 0) return;
+  const old = posts[i];
+  if (old.date === newDate && old.hora === newHora) return; // sem mudança
+  posts[i] = { ...old, date: newDate, hora: newHora };
+  persist();
+  render();
+  const d = DAYS.find(x => x.date === newDate);
+  toast(`Movido para ${d ? d.full + ' ' + d.num : newDate} · ${newHora}`);
 }
 
 // ── LINK RÁPIDO ───────────────────────────────────────────────────────────────
