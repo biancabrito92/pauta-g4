@@ -238,9 +238,57 @@ td.weekend-cell { background: #0b0f16; }
 .pcard-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
 .pcard-resp { font-size: 10px; color: var(--text3); }
 
-.pub-dot { color: var(--green); font-size: 8px; margin-left: 4px; vertical-align: middle; }
+.pub-dot { color: var(--green); font-size: 8px; margin-left: 4px; vertical-align: middle; cursor: pointer; }
+.pub-dot:hover { text-decoration: underline; }
 .pcard.is-published { border-left-color: var(--green) !important; }
 .pcard.is-published .pcard-ed { color: var(--green) !important; }
+
+/* Botão rápido de link */
+.pcard-addlink {
+  display: none;
+  margin-top: 5px;
+  font-size: 10px;
+  color: var(--text3);
+  background: none;
+  border: 1px dashed var(--border2);
+  border-radius: 4px;
+  padding: 2px 6px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: all 0.1s;
+}
+.pcard-addlink:hover { color: var(--green); border-color: var(--green); }
+.pcard:hover .pcard-addlink { display: block; }
+
+/* Mini popup de link */
+.link-popup {
+  position: fixed;
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  z-index: 9999;
+  width: 300px;
+  display: none;
+}
+.link-popup.open { display: block; }
+.link-popup label { font-size: 11px; color: var(--text2); display: block; margin-bottom: 6px; }
+.link-popup input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 7px 10px;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+.link-popup-actions { display: flex; gap: 8px; margin-top: 8px; justify-content: flex-end; }
+.link-popup-actions button { font-size: 11px; padding: 4px 10px; border-radius: 5px; cursor: pointer; border: none; }
+.lp-cancel { background: var(--s2); color: var(--text2); }
+.lp-save { background: var(--green); color: #fff; font-weight: 700; }
 
 
 .pcard-del {
@@ -611,6 +659,16 @@ td.weekend-cell { background: #0b0f16; }
 
 <div class="toast" id="toast"></div>
 
+<!-- Mini popup de link rápido -->
+<div class="link-popup" id="link-popup">
+  <label>Link do post publicado</label>
+  <input type="url" id="lp-input" placeholder="https://instagram.com/p/..." />
+  <div class="link-popup-actions">
+    <button class="lp-cancel" onclick="closeLinkPopup()">Cancelar</button>
+    <button class="lp-save" onclick="saveLinkPopup()">Salvar</button>
+  </div>
+</div>
+
 <script>
 // ── CONFIG ────────────────────────────────────────────────────────────────────
 
@@ -758,13 +816,19 @@ function renderCal() {
       const items = filtered(d.date, hora);
       let cells = items.map(p => {
         const sc = p.status === 'OK' ? 's-ok' : p.status === 'Revisão' ? 's-rev' : '';
-        const published = p.link ? `<span class="pub-dot" title="${p.link}">●</span>` : '';
+        const pubDot = p.link
+        ? `<span class="pub-dot" title="Abrir post" onclick="event.stopPropagation();window.open('${p.link}','_blank')">↗</span>`
+        : '';
+        const addLinkBtn = !p.link
+        ? `<button class="pcard-addlink" onclick="event.stopPropagation();openLinkPopup(${p.id},this)">＋ link do post</button>`
+        : '';
         return `<div class="pcard ${p.link?'is-published':''}" style="--ec:${color(p.editoria)}" onclick="openEdit(${p.id})">
-          <div class="pcard-ed">${p.editoria}${published}</div>
+          <div class="pcard-ed">${p.editoria}${pubDot}</div>
           <div class="pcard-pauta ${!p.pauta?'empty':''}">${p.pauta||'—'}</div>
           <div class="pcard-meta">
             <span class="pcard-resp">${p.resp}</span>
           </div>
+          ${addLinkBtn}
           <span class="pcard-del" onclick="event.stopPropagation();delPost(${p.id})">✕</span>
         </div>`;
       }).join('');
@@ -1033,6 +1097,60 @@ function savePost() {
   }
   persist(); closeModal(); render();
 }
+
+// ── LINK RÁPIDO ───────────────────────────────────────────────────────────────
+let linkPopupId = null;
+
+function openLinkPopup(id, btn) {
+  linkPopupId = id;
+  const p = posts.find(x=>x.id===id);
+  const popup = document.getElementById('link-popup');
+  const input = document.getElementById('lp-input');
+  input.value = p.link || '';
+
+  // Posiciona próximo ao botão clicado
+  const rect = btn.getBoundingClientRect();
+  popup.style.top = (rect.bottom + 6 + window.scrollY) + 'px';
+  let left = rect.left + window.scrollX;
+  if (left + 310 > window.innerWidth) left = window.innerWidth - 315;
+  popup.style.left = Math.max(5, left) + 'px';
+
+  popup.classList.add('open');
+  setTimeout(() => { input.focus(); input.select(); }, 50);
+}
+
+function closeLinkPopup() {
+  document.getElementById('link-popup').classList.remove('open');
+  linkPopupId = null;
+}
+
+function saveLinkPopup() {
+  if (linkPopupId === null) return;
+  const val = document.getElementById('lp-input').value.trim();
+  const i = posts.findIndex(x=>x.id===linkPopupId);
+  if (i >= 0) { posts[i].link = val; }
+  persist(); render();
+  closeLinkPopup();
+  toast(val ? 'Link salvo!' : 'Link removido');
+}
+
+// Fechar popup ao clicar fora
+document.addEventListener('click', function(e) {
+  const popup = document.getElementById('link-popup');
+  if (popup && popup.classList.contains('open') && !popup.contains(e.target)) {
+    closeLinkPopup();
+  }
+});
+
+// Enter para salvar no popup
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && document.getElementById('link-popup').classList.contains('open')) {
+    saveLinkPopup();
+  }
+  if (e.key === 'Escape' && document.getElementById('link-popup').classList.contains('open')) {
+    closeLinkPopup();
+  }
+});
 
 function delPost(id) {
   if (!confirm('Remover este post?')) return;
