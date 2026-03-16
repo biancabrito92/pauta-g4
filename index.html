@@ -933,7 +933,7 @@ function renderResults() {
       <h2>Resultados por editoria</h2>
       <p>${published.length} de ${total} posts publicados com link registrado</p>
     </div>
-    <span class="db-badge">⬡ Databricks — aguardando conexão</span>
+    <button class="btn btn-primary" onclick="exportarParaG4OS()" style="font-size:12px;padding:6px 14px">↓ Exportar links para G4 OS</button>
   </div>`;
 
   if (published.length === 0) {
@@ -1024,6 +1024,30 @@ function renderResults() {
 
   html += `</tbody></table></div>`;
   el.innerHTML = html;
+}
+
+function exportarParaG4OS() {
+  const published = posts
+    .filter(p => p.link)
+    .map(p => ({
+      id: p.id,
+      date: p.date,
+      hora: p.hora,
+      editoria: p.editoria,
+      resp: p.resp,
+      pauta: p.pauta,
+      link: p.link
+    }));
+  if (published.length === 0) { toast('Nenhum post com link cadastrado'); return; }
+  const blob = new Blob([JSON.stringify(published, null, 2)], {type: 'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'posts-publicados.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+  toast(`${published.length} posts exportados — salve na pasta G4`);
 }
 
 function updateMetric(id, field, value) {
