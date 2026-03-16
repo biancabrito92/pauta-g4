@@ -1000,46 +1000,42 @@ function renderResults() {
 
   // Tabela de posts publicados com dados do Databricks
   // DB_RESULTS: dados puxados do Databricks — atualizado por G4 OS
+  // Sync: 16/03/2026 15:41 | Fonte: instagram_medias_consolidated (D0+D+1 acumulado)
   const DB_RESULTS = {
-    'DV3oVyYFfh_': { reach: 39147, interactions: null, views: null, likes: null, shares: null, saved: null, comments: null, data_ref: '15/03' }
+    'DV3oVyYFfh_': { reach: 123591, interactions: 4005, views: 265768, shares: 1432, saved: 388, comments: 39, profile_visits: 204 }
   };
 
   html += `<div class="results-section">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
       <h3 style="margin:0">Posts publicados</h3>
-      <span style="font-size:11px;color:var(--text3)">Dados Databricks · última sync 16/03 14:20</span>
+      <span style="font-size:11px;color:var(--text3)">Dados Databricks · sync 16/03 15:41</span>
     </div>
   <table class="pub-table">
     <thead><tr>
-      <th>Data</th><th>Hora</th><th>Editoria</th><th>Pauta</th>
-      <th>Alcance</th><th>Interações</th><th>Views</th><th>Link</th>
+      <th>Data</th><th>Editoria</th><th>Pauta</th>
+      <th>Alcance</th><th>Views</th><th>Interações</th><th>Tx. Eng.</th><th>Shares</th><th>Saves</th><th>Link</th>
     </tr></thead><tbody>`;
 
   published
     .sort((a,b) => a.date.localeCompare(b.date)||a.hora.localeCompare(b.hora))
     .forEach(p => {
       const d = DAYS.find(x => x.date === p.date);
-      // Extrai shortcode da URL para buscar no DB_RESULTS
       const sc = (p.link||'').replace(/\?.*$/,'').replace(/\/$/,'').split('/').pop();
       const db = DB_RESULTS[sc] || null;
       const fmt = n => n != null ? Number(n).toLocaleString('pt-BR') : '<span style="color:var(--text3)">—</span>';
-      const reachCell = db
-        ? `<span style="color:var(--green);font-weight:700">${fmt(db.reach)}</span>`
-        : `<input class="res-input" type="number" placeholder="0" value="${p.alcance||''}" onchange="updateMetric(${p.id},'alcance',this.value)" />`;
-      const intCell = db
-        ? fmt(db.interactions)
-        : `<input class="res-input" type="number" placeholder="0" value="${p.engajamento||''}" onchange="updateMetric(${p.id},'engajamento',this.value)" />`;
-      const viewsCell = db ? fmt(db.views) : '—';
+      const txEng = (db && db.reach > 0) ? ((db.interactions / db.reach) * 100).toFixed(2) + '%' : '—';
       const dbBadge = db ? `<span style="font-size:9px;background:rgba(34,197,94,0.15);color:var(--green);padding:1px 5px;border-radius:3px;margin-left:4px">DB</span>` : '';
 
       html += `<tr>
-        <td style="color:var(--text2);white-space:nowrap">${d ? d.full + ' ' + d.num : p.date}</td>
-        <td style="color:var(--text2)">${p.hora}</td>
+        <td style="color:var(--text2);white-space:nowrap">${d ? d.wd + ' ' + d.num : p.date}<br><span style="font-size:10px">${p.hora}</span></td>
         <td><span class="ed-tag" style="--ec:${color(p.editoria)}">${p.editoria}</span></td>
         <td>${p.pauta||'—'}${dbBadge}</td>
-        <td>${reachCell}</td>
-        <td>${intCell}</td>
-        <td>${viewsCell}</td>
+        <td>${db ? `<span style="color:var(--green);font-weight:700">${fmt(db.reach)}</span>` : `<input class="res-input" type="number" placeholder="0" value="${p.alcance||''}" onchange="updateMetric(${p.id},'alcance',this.value)" />`}</td>
+        <td>${db ? fmt(db.views) : '—'}</td>
+        <td>${db ? fmt(db.interactions) : `<input class="res-input" type="number" placeholder="0" value="${p.engajamento||''}" onchange="updateMetric(${p.id},'engajamento',this.value)" />`}</td>
+        <td style="font-weight:${db?'600':'400'};color:${db?'var(--yellow)':'inherit'}">${txEng}</td>
+        <td>${db ? fmt(db.shares) : '—'}</td>
+        <td>${db ? fmt(db.saved) : '—'}</td>
         <td><a href="${p.link}" target="_blank" style="color:var(--green);text-decoration:none;font-size:11px">Ver ↗</a></td>
       </tr>`;
     });
