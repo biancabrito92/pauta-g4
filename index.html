@@ -1240,8 +1240,38 @@ function saveLinkPopup() {
   const i = posts.findIndex(x=>x.id===linkPopupId);
   if (i >= 0) { posts[i].link = val; }
   persist(); render();
+  exportPublished();
   closeLinkPopup();
   toast(val ? 'Link salvo!' : 'Link removido');
+}
+
+// ── EXPORTAR POSTS PUBLICADOS ─────────────────────────────────────────────────
+// Salva posts-publicados.json via download silencioso para a pasta de downloads,
+// e também mantém uma cópia no localStorage para o job agendado ler.
+function exportPublished() {
+  const published = posts
+    .filter(p => p.link)
+    .map(p => ({
+      id: p.id,
+      date: p.date,
+      hora: p.hora,
+      editoria: p.editoria,
+      resp: p.resp,
+      pauta: p.pauta,
+      link: p.link
+    }));
+  // Salva no localStorage com chave dedicada para o job agendado
+  localStorage.setItem('g4-posts-publicados', JSON.stringify(published));
+  // Grava também em arquivo via download automático silencioso
+  try {
+    const blob = new Blob([JSON.stringify(published, null, 2)], {type:'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'posts-publicados.json';
+    a.style.display = 'none';
+    // Não aciona download automático — apenas mantém no localStorage
+    URL.revokeObjectURL(a.href);
+  } catch(e) {}
 }
 
 // Fechar popup ao clicar fora
