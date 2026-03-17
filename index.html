@@ -1000,15 +1000,25 @@ function renderResults() {
 
   // Tabela de posts publicados com dados do Databricks
   // DB_RESULTS: dados puxados do Databricks — atualizado por G4 OS
-  // Sync: 16/03/2026 15:41 | Fonte: instagram_medias_consolidated (D0+D+1 acumulado)
+  // Sync: 17/03/2026 16:19 | Fonte: instagram_medias_consolidated (acumulado D0+D+1+D+2+D+3)
   const DB_RESULTS = {
-    'DV3oVyYFfh_': { reach: 123591, interactions: 4005, views: 265768, shares: 1432, saved: 388, comments: 39, profile_visits: 204 }
+    'DV3oVyYFfh_': { reach: 134349, interactions: 4538, views: 289776, shares: 1641, saved: 438, comments: 40 },
+    'DV56uByFYX3': { reach: 64745,  interactions: 2008, views: 135360, shares: 389,  saved: 242, comments: 21 },
+    'DV4RCxoFXBW': { reach: 44976,  interactions: 514,  views: 87930,  shares: 59,   saved: 132, comments: 1  },
+    'DV3FejLlQKB': { reach: 31107,  interactions: 617,  views: 65033,  shares: 110,  saved: 109, comments: 4  },
+    'DV6QqT6AZCd': { reach: 24157,  interactions: 717,  views: 34159,  shares: 55,   saved: 57,  comments: 144},
+    'DV611folaX8': { reach: 23886,  interactions: 430,  views: 52468,  shares: 58,   saved: 51,  comments: 2  },
+    'DV7RD4cga1V': { reach: 16733,  interactions: 95,   views: 20050,  shares: 3,    saved: 7,   comments: 1  },
+    'DV4sk1xlXGi': { reach: 16263,  interactions: 121,  views: 32260,  shares: 8,    saved: 24,  comments: 0  },
+    'DV4e0dSFe5k': { reach: 9396,   interactions: 113,  views: 12569,  shares: 25,   saved: 8,   comments: 8  },
+    'DV6hSM6FQNV': { reach: 9004,   interactions: 108,  views: 10923,  shares: 6,    saved: 10,  comments: 25 },
+    'DV38d6VleGm': { reach: 8213,   interactions: 45,   views: 10252,  shares: 3,    saved: 4,   comments: 0  }
   };
 
   html += `<div class="results-section">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
       <h3 style="margin:0">Posts publicados</h3>
-      <span style="font-size:11px;color:var(--text3)">Dados Databricks · sync 16/03 15:41</span>
+      <span style="font-size:11px;color:var(--text3)">Dados Databricks · sync 17/03 16:19</span>
     </div>
   <table class="pub-table">
     <thead><tr>
