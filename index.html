@@ -563,7 +563,7 @@ td.weekend-cell { background: #0b0f16; }
 <!-- Top bar -->
 <div class="topbar">
   <div>
-    <h1>Pauta Feed — G4 Educação</h1>
+    <h1>Pauta Feed — G4 Educação · Março 2026</h1>
     <p>14 a 22 de março de 2026</p>
   </div>
   <div class="topbar-right">
@@ -618,15 +618,37 @@ td.weekend-cell { background: #0b0f16; }
       <div class="field">
         <label>Data</label>
         <select id="f-date">
-          <option value="14/03/2026">14 – Sábado</option>
-          <option value="15/03/2026">15 – Domingo</option>
-          <option value="16/03/2026">16 – Segunda</option>
-          <option value="17/03/2026">17 – Terça</option>
-          <option value="18/03/2026">18 – Quarta</option>
-          <option value="19/03/2026">19 – Quinta</option>
-          <option value="20/03/2026">20 – Sexta</option>
-          <option value="21/03/2026">21 – Sábado</option>
-          <option value="22/03/2026">22 – Domingo</option>
+          <option value="01/03/2026">01 – Dom</option>
+          <option value="02/03/2026">02 – Seg</option>
+          <option value="03/03/2026">03 – Ter</option>
+          <option value="04/03/2026">04 – Qua</option>
+          <option value="05/03/2026">05 – Qui</option>
+          <option value="06/03/2026">06 – Sex</option>
+          <option value="07/03/2026">07 – Sáb</option>
+          <option value="08/03/2026">08 – Dom</option>
+          <option value="09/03/2026">09 – Seg</option>
+          <option value="10/03/2026">10 – Ter</option>
+          <option value="11/03/2026">11 – Qua</option>
+          <option value="12/03/2026">12 – Qui</option>
+          <option value="13/03/2026">13 – Sex</option>
+          <option value="14/03/2026">14 – Sáb</option>
+          <option value="15/03/2026">15 – Dom</option>
+          <option value="16/03/2026">16 – Seg</option>
+          <option value="17/03/2026">17 – Ter</option>
+          <option value="18/03/2026">18 – Qua</option>
+          <option value="19/03/2026">19 – Qui</option>
+          <option value="20/03/2026">20 – Sex</option>
+          <option value="21/03/2026">21 – Sáb</option>
+          <option value="22/03/2026">22 – Dom</option>
+          <option value="23/03/2026">23 – Seg</option>
+          <option value="24/03/2026">24 – Ter</option>
+          <option value="25/03/2026">25 – Qua</option>
+          <option value="26/03/2026">26 – Qui</option>
+          <option value="27/03/2026">27 – Sex</option>
+          <option value="28/03/2026">28 – Sáb</option>
+          <option value="29/03/2026">29 – Dom</option>
+          <option value="30/03/2026">30 – Seg</option>
+          <option value="31/03/2026">31 – Ter</option>
         </select>
       </div>
       <div class="field">
@@ -695,6 +717,19 @@ td.weekend-cell { background: #0b0f16; }
 // ── CONFIG ────────────────────────────────────────────────────────────────────
 
 const DAYS = [
+  { date:'01/03/2026', num:1,  wd:'Dom',  full:'Domingo', wk:true  },
+  { date:'02/03/2026', num:2,  wd:'Seg',  full:'Segunda', wk:false },
+  { date:'03/03/2026', num:3,  wd:'Ter',  full:'Terça',   wk:false },
+  { date:'04/03/2026', num:4,  wd:'Qua',  full:'Quarta',  wk:false },
+  { date:'05/03/2026', num:5,  wd:'Qui',  full:'Quinta',  wk:false },
+  { date:'06/03/2026', num:6,  wd:'Sex',  full:'Sexta',   wk:false },
+  { date:'07/03/2026', num:7,  wd:'Sáb',  full:'Sábado',  wk:true  },
+  { date:'08/03/2026', num:8,  wd:'Dom',  full:'Domingo', wk:true  },
+  { date:'09/03/2026', num:9,  wd:'Seg',  full:'Segunda', wk:false },
+  { date:'10/03/2026', num:10, wd:'Ter',  full:'Terça',   wk:false },
+  { date:'11/03/2026', num:11, wd:'Qua',  full:'Quarta',  wk:false },
+  { date:'12/03/2026', num:12, wd:'Qui',  full:'Quinta',  wk:false },
+  { date:'13/03/2026', num:13, wd:'Sex',  full:'Sexta',   wk:false },
   { date:'14/03/2026', num:14, wd:'Sáb',  full:'Sábado',  wk:true  },
   { date:'15/03/2026', num:15, wd:'Dom',  full:'Domingo', wk:true  },
   { date:'16/03/2026', num:16, wd:'Seg',  full:'Segunda', wk:false },
@@ -704,6 +739,15 @@ const DAYS = [
   { date:'20/03/2026', num:20, wd:'Sex',  full:'Sexta',   wk:false },
   { date:'21/03/2026', num:21, wd:'Sáb',  full:'Sábado',  wk:true  },
   { date:'22/03/2026', num:22, wd:'Dom',  full:'Domingo', wk:true  },
+  { date:'23/03/2026', num:23, wd:'Seg',  full:'Segunda', wk:false },
+  { date:'24/03/2026', num:24, wd:'Ter',  full:'Terça',   wk:false },
+  { date:'25/03/2026', num:25, wd:'Qua',  full:'Quarta',  wk:false },
+  { date:'26/03/2026', num:26, wd:'Qui',  full:'Quinta',  wk:false },
+  { date:'27/03/2026', num:27, wd:'Sex',  full:'Sexta',   wk:false },
+  { date:'28/03/2026', num:28, wd:'Sáb',  full:'Sábado',  wk:true  },
+  { date:'29/03/2026', num:29, wd:'Dom',  full:'Domingo', wk:true  },
+  { date:'30/03/2026', num:30, wd:'Seg',  full:'Segunda', wk:false },
+  { date:'31/03/2026', num:31, wd:'Ter',  full:'Terça',   wk:false },
 ];
 
 const HOURS = ['00:00','07:00','09:00','12:00','15:00','18:00','19:00','20:00','21:00','22:00','24:00'];
@@ -1112,7 +1156,8 @@ function openAdd() {
   editingId = null;
   document.getElementById('m-title').textContent = 'Novo post';
   document.getElementById('m-ctx').textContent = '';
-  document.getElementById('f-date').value = '16/03/2026';
+  const today = new Date(); const dd = String(today.getDate()).padStart(2,'0'); const mm = String(today.getMonth()+1).padStart(2,'0'); const todayStr = dd+'/'+mm+'/'+today.getFullYear();
+  document.getElementById('f-date').value = todayStr;
   document.getElementById('f-hora').value = '12:00';
   document.getElementById('f-ed').value   = 'Radar do empresário';
   document.getElementById('f-resp').value  = 'INC';
