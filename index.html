@@ -573,6 +573,9 @@ td.weekend-cell { background: #0b0f16; }
       <button class="view-tab"        id="btn-results"  onclick="setView('results')">Resultados</button>
     </div>
     <button class="btn btn-ghost"   onclick="exportCSV()">Exportar CSV</button>
+    <button class="btn btn-ghost"   onclick="reloadFromGH()" title="Recarregar dados do GitHub">↻ Atualizar</button>
+    <button class="btn btn-ghost"   onclick="openTokenModal()" title="Configurar token GitHub" style="font-size:16px;padding:0 10px;">⚙</button>
+    <span id="sync-badge" style="font-size:11px;color:var(--green);opacity:0;transition:opacity 0.5s;white-space:nowrap;"></span>
     <button class="btn btn-primary" onclick="openAdd()">＋ Novo post</button>
   </div>
 </div>
@@ -704,6 +707,32 @@ td.weekend-cell { background: #0b0f16; }
 
 <div class="toast" id="toast"></div>
 
+<!-- Modal de token GitHub -->
+<div class="overlay" id="token-overlay" style="display:none;align-items:center;justify-content:center;">
+  <div class="modal" style="max-width:480px;">
+    <div class="modal-head">
+      <div><h2>Configurar acesso GitHub</h2><p>Necessário para salvar alterações para o time</p></div>
+      <button class="modal-x" onclick="closeTokenModal()">✕</button>
+    </div>
+    <div class="field" style="margin-top:12px;">
+      <label>GitHub Personal Access Token</label>
+      <input type="password" id="gh-token-input" placeholder="github_pat_..." style="width:100%;background:var(--s2);border:1px solid var(--border2);color:var(--text);padding:8px 12px;border-radius:8px;font-size:14px;" />
+    </div>
+    <p style="font-size:12px;color:var(--text2);margin-top:8px;line-height:1.5;">
+      Crie em <strong style="color:var(--text)">github.com → Settings → Developer settings → Personal access tokens → Fine-grained</strong>.<br>
+      Permissão necessária: <strong style="color:var(--text)">Contents → Read and write</strong> no repositório <code style="color:#60a5fa">biancabrito92/pauta-g4</code>.<br>
+      O token fica salvo apenas no seu navegador.
+    </p>
+    <div class="mactions" style="margin-top:16px;">
+      <button class="btn btn-ghost" onclick="clearToken()" style="color:var(--red);">Remover token</button>
+      <div class="right">
+        <button class="btn btn-ghost" onclick="closeTokenModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="saveToken()">Salvar token</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Mini popup de link rápido -->
 <div class="link-popup" id="link-popup">
   <label>Link do post publicado</label>
@@ -827,22 +856,125 @@ const INITIAL = [
   { id:59, date:'22/03/2026', hora:'22:00', editoria:'Rebranding',          resp:'G4',  pauta:'',                             status:''        },
 ];
 
+// ── GITHUB BACKEND ────────────────────────────────────────────────────────────
+const GH_REPO  = 'biancabrito92/pauta-g4';
+const GH_FILE  = 'data.json';
+const GH_RAW   = `https://raw.githubusercontent.com/${GH_REPO}/main/${GH_FILE}`;
+const GH_API   = `https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`;
+const LS_TOKEN = 'g4-gh-token';
+const LS_CACHE = 'g4-pauta-mar26v3';
+
+let ghToken = localStorage.getItem(LS_TOKEN) || '';
+
+function getToken() { return localStorage.getItem(LS_TOKEN) || ''; }
+
+async function ghLoad() {
+  try {
+    const r = await fetch(GH_RAW + '?t=' + Date.now());
+    if (!r.ok) throw new Error('fetch failed');
+    const data = await r.json();
+    localStorage.setItem(LS_CACHE, JSON.stringify(data));
+    return data;
+  } catch(e) {
+    // fallback ao cache local
+    try {
+      const s = localStorage.getItem(LS_CACHE);
+      if (s) return JSON.parse(s);
+    } catch(_) {}
+    return JSON.parse(JSON.stringify(INITIAL));
+  }
+}
+
+async function ghSave(data) {
+  const token = getToken();
+  if (!token) {
+    // sem token: salva só local
+    localStorage.setItem(LS_CACHE, JSON.stringify(data));
+    toast('Salvo localmente (sem token GitHub configurado)');
+    return false;
+  }
+  try {
+    // busca SHA atual para evitar conflito
+    const meta = await fetch(GH_API, {
+      headers: { Authorization: 'token ' + token }
+    });
+    const metaJson = await meta.json();
+    const sha = metaJson.sha;
+
+    const body = {
+      message: 'update: pauta via app ' + new Date().toLocaleString('pt-BR'),
+      content: btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2)))),
+      sha: sha
+    };
+    const res = await fetch(GH_API, {
+      method: 'PUT',
+      headers: {
+        Authorization: 'token ' + token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.message || res.status);
+    }
+    localStorage.setItem(LS_CACHE, JSON.stringify(data));
+    return true;
+  } catch(e) {
+    console.error('ghSave error:', e);
+    localStorage.setItem(LS_CACHE, JSON.stringify(data));
+    toast('Erro ao salvar no GitHub: ' + e.message);
+    return false;
+  }
+}
+
 // ── STATE ─────────────────────────────────────────────────────────────────────
-const LS = 'g4-pauta-mar26v3';
-let posts;
+let posts = JSON.parse(JSON.stringify(INITIAL));
+// Tenta carregar do cache local imediatamente para exibir algo enquanto faz fetch
 try {
-  const s = localStorage.getItem(LS);
+  const s = localStorage.getItem(LS_CACHE);
   const p = s ? JSON.parse(s) : null;
-  posts = (p && p.length >= INITIAL.length) ? p : JSON.parse(JSON.stringify(INITIAL));
-} catch(e) { posts = JSON.parse(JSON.stringify(INITIAL)); }
-localStorage.setItem(LS, JSON.stringify(posts));
+  if (p && p.length) posts = p;
+} catch(_) {}
 
 let nextId = Math.max(...posts.map(p => p.id)) + 1;
 let activeFilter = 'all';
 let currentView  = 'cal';
 let editingId    = null;
+let isSaving     = false;
 
-const persist = () => localStorage.setItem(LS, JSON.stringify(posts));
+function persist() {
+  // persist apenas no cache local — ghSave é chamado explicitamente nas ações
+  localStorage.setItem(LS_CACHE, JSON.stringify(posts));
+}
+
+async function persistAndSync() {
+  persist();
+  if (isSaving) return;
+  isSaving = true;
+  const ok = await ghSave(posts);
+  isSaving = false;
+  if (ok) showSyncBadge('✓ Sincronizado');
+}
+
+function showSyncBadge(msg) {
+  const el = document.getElementById('sync-badge');
+  if (!el) return;
+  el.textContent = msg;
+  el.style.opacity = '1';
+  clearTimeout(el._t);
+  el._t = setTimeout(() => { el.style.opacity = '0'; }, 3000);
+}
+
+// Carrega do GitHub ao inicializar
+ghLoad().then(data => {
+  if (data && data.length) {
+    posts = data;
+    nextId = Math.max(...posts.map(p => p.id)) + 1;
+    render();
+    showSyncBadge('✓ Dados carregados');
+  }
+});
 
 function color(ed) { return EC[ed] || EC['Outros']; }
 
@@ -1219,7 +1351,7 @@ function savePost() {
     posts.push(item);
     toast('Post adicionado!');
   }
-  persist(); closeModal(); render();
+  persistAndSync(); closeModal(); render();
 }
 
 // ── DRAG AND DROP (mouse events) ──────────────────────────────────────────────
@@ -1299,7 +1431,7 @@ function cardMouseDown(e, id) {
     if (old.date === newDate && old.hora === newHora) return;
 
     posts[i] = { ...old, date: newDate, hora: newHora };
-    persist(); render();
+    persistAndSync(); render();
     const d = DAYS.find(x => x.date === newDate);
     toast(`Movido para ${d ? d.wd + ' ' + d.num : newDate} · ${newHora}`);
   }
@@ -1339,7 +1471,7 @@ function saveLinkPopup() {
   const val = document.getElementById('lp-input').value.trim();
   const i = posts.findIndex(x=>x.id===linkPopupId);
   if (i >= 0) { posts[i].link = val; }
-  persist(); render();
+  persistAndSync(); render();
   exportPublished();
   closeLinkPopup();
   toast(val ? 'Link salvo!' : 'Link removido');
@@ -1395,7 +1527,7 @@ document.addEventListener('keydown', function(e) {
 function delPost(id) {
   if (!confirm('Remover este post?')) return;
   posts = posts.filter(x=>x.id!==id);
-  persist(); render(); toast('Removido.');
+  persistAndSync(); render(); toast('Removido.');
 }
 
 function deletePost() {
@@ -1413,10 +1545,47 @@ function exportCSV() {
 }
 
 document.getElementById('overlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.getElementById('token-overlay').addEventListener('click',function(e){if(e.target===this)closeTokenModal();});
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape') closeModal();
+  if(e.key==='Escape') { closeModal(); closeTokenModal(); }
   if((e.ctrlKey||e.metaKey)&&e.key==='Enter') savePost();
 });
+
+// ── TOKEN MODAL ───────────────────────────────────────────────────────────────
+function openTokenModal() {
+  const el = document.getElementById('token-overlay');
+  el.style.display = 'flex';
+  document.getElementById('gh-token-input').value = getToken();
+  setTimeout(()=>document.getElementById('gh-token-input').focus(), 60);
+}
+function closeTokenModal() {
+  document.getElementById('token-overlay').style.display = 'none';
+}
+function saveToken() {
+  const val = document.getElementById('gh-token-input').value.trim();
+  if (!val) { toast('Token não pode ser vazio'); return; }
+  localStorage.setItem(LS_TOKEN, val);
+  closeTokenModal();
+  toast('Token salvo! Suas edições agora sincronizam com o time.');
+}
+function clearToken() {
+  if (!confirm('Remover o token GitHub deste navegador?')) return;
+  localStorage.removeItem(LS_TOKEN);
+  closeTokenModal();
+  toast('Token removido. Edições ficam só locais.');
+}
+
+async function reloadFromGH() {
+  showSyncBadge('Carregando…');
+  const data = await ghLoad();
+  if (data && data.length) {
+    posts = data;
+    nextId = Math.max(...posts.map(p => p.id)) + 1;
+    render();
+    showSyncBadge('✓ Atualizado');
+    toast('Dados atualizados do GitHub!');
+  }
+}
 
 render();
 </script>
