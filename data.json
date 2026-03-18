@@ -578,5 +578,15 @@
     "pauta": "",
     "status": "",
     "link": ""
+  },
+  {
+    "date": "18/03/2026",
+    "hora": "20:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Fifa",
+    "link": "",
+    "status": "",
+    "id": 60
   }
 ]
