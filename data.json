@@ -170,16 +170,6 @@
     "link": ""
   },
   {
-    "id": 18,
-    "date": "17/03/2026",
-    "hora": "07:00",
-    "editoria": "Erro ao aprendizado",
-    "resp": "G4",
-    "pauta": "Anthropic",
-    "status": "",
-    "link": ""
-  },
-  {
     "id": 19,
     "date": "17/03/2026",
     "hora": "09:00",
@@ -390,6 +380,16 @@
     "link": ""
   },
   {
+    "id": 47,
+    "date": "21/03/2026",
+    "hora": "09:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Framework",
+    "status": "",
+    "link": ""
+  },
+  {
     "id": 48,
     "date": "21/03/2026",
     "hora": "12:00",
@@ -476,6 +476,16 @@
     "editoria": "Ecossistema G4",
     "resp": "G4",
     "pauta": "Solicitar prova social *",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 57,
+    "date": "22/03/2026",
+    "hora": "18:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Framework",
     "status": "",
     "link": ""
   },
