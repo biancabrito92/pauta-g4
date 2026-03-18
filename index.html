@@ -572,6 +572,7 @@ td.weekend-cell { background: #0b0f16; }
       <button class="view-tab"        id="btn-list"     onclick="setView('list')">Lista</button>
       <button class="view-tab"        id="btn-results"  onclick="setView('results')">Resultados</button>
     </div>
+    <button class="btn btn-ghost"   onclick="exportarParaG4OS()">Exportar JSON</button>
     <button class="btn btn-ghost"   onclick="exportCSV()">Exportar CSV</button>
     <button class="btn btn-ghost"   onclick="reloadFromGH()" title="Recarregar dados do GitHub">↻ Atualizar</button>
     <button class="btn btn-ghost"   onclick="openTokenModal()" title="Configurar token GitHub" style="font-size:16px;padding:0 10px;">⚙</button>
@@ -1542,6 +1543,15 @@ function exportCSV() {
   const blob = new Blob(['\ufeff'+[h,...rows].join('\n')],{type:'text/csv;charset=utf-8'});
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='pauta-g4-mar.csv'; a.click();
   toast('CSV exportado!');
+}
+
+function exportarParaG4OS() {
+  const blob = new Blob([JSON.stringify(posts, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'pauta-completa.json';
+  a.click();
+  toast('JSON exportado!');
 }
 
 document.getElementById('overlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
