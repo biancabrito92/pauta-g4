@@ -65,7 +65,7 @@
     "hora": "07:00",
     "editoria": "IA",
     "resp": "G4",
-    "pauta": "Tallis Gomes IA",
+    "pauta": "Tallis Gomes",
     "status": "",
     "link": ""
   },
@@ -263,9 +263,9 @@
     "id": 27,
     "date": "18/03/2026",
     "hora": "12:00",
-    "editoria": "Radar do empresário",
+    "editoria": "Erro ao aprendizado",
     "resp": "INC",
-    "pauta": "",
+    "pauta": "Eskimo",
     "status": "",
     "link": ""
   },
