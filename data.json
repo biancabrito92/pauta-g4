@@ -1,0 +1,592 @@
+[
+  {
+    "id": 1,
+    "date": "14/03/2026",
+    "hora": "07:00",
+    "editoria": "Erro ao aprendizado",
+    "resp": "G4",
+    "pauta": "Case Netflix",
+    "status": "OK",
+    "link": ""
+  },
+  {
+    "id": 2,
+    "date": "14/03/2026",
+    "hora": "12:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Corrida",
+    "status": "Revisão",
+    "link": ""
+  },
+  {
+    "id": 3,
+    "date": "14/03/2026",
+    "hora": "15:00",
+    "editoria": "Ecossistema G4",
+    "resp": "G4",
+    "pauta": "Alan Barros",
+    "status": "OK",
+    "link": ""
+  },
+  {
+    "id": 4,
+    "date": "14/03/2026",
+    "hora": "18:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Maior pesadelo do Mc Donald's",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 5,
+    "date": "14/03/2026",
+    "hora": "20:00",
+    "editoria": "IA",
+    "resp": "G4",
+    "pauta": "G4OS João Victor",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 6,
+    "date": "14/03/2026",
+    "hora": "22:00",
+    "editoria": "Rebranding",
+    "resp": "G4",
+    "pauta": "Carrossel do Rebranding",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 7,
+    "date": "15/03/2026",
+    "hora": "07:00",
+    "editoria": "IA",
+    "resp": "G4",
+    "pauta": "Tallis Gomes",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 8,
+    "date": "15/03/2026",
+    "hora": "12:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Posicionamento Porshe",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 9,
+    "date": "15/03/2026",
+    "hora": "15:00",
+    "editoria": "Ecossistema G4",
+    "resp": "G4",
+    "pauta": "Prova social - Airton Junior",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 10,
+    "date": "15/03/2026",
+    "hora": "19:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Framework",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 11,
+    "date": "15/03/2026",
+    "hora": "22:00",
+    "editoria": "Rebranding",
+    "resp": "G4",
+    "pauta": "Rebranding Misa",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 12,
+    "date": "16/03/2026",
+    "hora": "07:00",
+    "editoria": "IA",
+    "resp": "G4",
+    "pauta": "Orgânico Wes G4OS",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 13,
+    "date": "16/03/2026",
+    "hora": "09:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Framework",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 14,
+    "date": "16/03/2026",
+    "hora": "12:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 15,
+    "date": "16/03/2026",
+    "hora": "15:00",
+    "editoria": "Ecossistema G4",
+    "resp": "G4",
+    "pauta": "Prova social - Felipe Danela",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 16,
+    "date": "16/03/2026",
+    "hora": "18:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 17,
+    "date": "16/03/2026",
+    "hora": "21:00",
+    "editoria": "Rebranding",
+    "resp": "G4",
+    "pauta": "Expedition",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 18,
+    "date": "17/03/2026",
+    "hora": "07:00",
+    "editoria": "Erro ao aprendizado",
+    "resp": "G4",
+    "pauta": "Anthropic",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 19,
+    "date": "17/03/2026",
+    "hora": "09:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Framework",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 20,
+    "date": "17/03/2026",
+    "hora": "12:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 21,
+    "date": "17/03/2026",
+    "hora": "15:00",
+    "editoria": "Ecossistema G4",
+    "resp": "G4",
+    "pauta": "Flavia de Club",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 22,
+    "date": "17/03/2026",
+    "hora": "18:00",
+    "editoria": "IA",
+    "resp": "G4",
+    "pauta": "Corte podcast com Viver de IA",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 23,
+    "date": "17/03/2026",
+    "hora": "20:00",
+    "editoria": "Legado",
+    "resp": "INC",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 24,
+    "date": "17/03/2026",
+    "hora": "00:00",
+    "editoria": "Rebranding",
+    "resp": "G4",
+    "pauta": "Misa",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 25,
+    "date": "18/03/2026",
+    "hora": "07:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Framework",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 26,
+    "date": "18/03/2026",
+    "hora": "09:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 27,
+    "date": "18/03/2026",
+    "hora": "12:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 28,
+    "date": "18/03/2026",
+    "hora": "15:00",
+    "editoria": "Rebranding",
+    "resp": "G4",
+    "pauta": "(branding)",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 29,
+    "date": "18/03/2026",
+    "hora": "18:00",
+    "editoria": "IA",
+    "resp": "G4",
+    "pauta": "Orgânico Wes G4OS",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 30,
+    "date": "18/03/2026",
+    "hora": "21:00",
+    "editoria": "Erro ao aprendizado",
+    "resp": "G4",
+    "pauta": "Vick",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 31,
+    "date": "18/03/2026",
+    "hora": "00:00",
+    "editoria": "Ecossistema G4",
+    "resp": "G4",
+    "pauta": "Solicitar prova social *",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 32,
+    "date": "19/03/2026",
+    "hora": "07:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Framework",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 33,
+    "date": "19/03/2026",
+    "hora": "09:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 34,
+    "date": "19/03/2026",
+    "hora": "12:00",
+    "editoria": "Erro ao aprendizado",
+    "resp": "INC",
+    "pauta": "Starbucks",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 35,
+    "date": "19/03/2026",
+    "hora": "15:00",
+    "editoria": "Ecossistema G4",
+    "resp": "G4",
+    "pauta": "Club",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 36,
+    "date": "19/03/2026",
+    "hora": "18:00",
+    "editoria": "IA",
+    "resp": "G4",
+    "pauta": "Tallis Gomes",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 37,
+    "date": "19/03/2026",
+    "hora": "21:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 38,
+    "date": "19/03/2026",
+    "hora": "00:00",
+    "editoria": "Rebranding",
+    "resp": "G4",
+    "pauta": "Nardon",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 39,
+    "date": "20/03/2026",
+    "hora": "07:00",
+    "editoria": "IA",
+    "resp": "INC",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 40,
+    "date": "20/03/2026",
+    "hora": "09:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 41,
+    "date": "20/03/2026",
+    "hora": "12:00",
+    "editoria": "Erro ao aprendizado",
+    "resp": "G4",
+    "pauta": "Lovable",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 42,
+    "date": "20/03/2026",
+    "hora": "15:00",
+    "editoria": "Ecossistema G4",
+    "resp": "G4",
+    "pauta": "Solicitar prova social *",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 43,
+    "date": "20/03/2026",
+    "hora": "18:00",
+    "editoria": "IA",
+    "resp": "G4",
+    "pauta": "G4OS João Victor",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 44,
+    "date": "20/03/2026",
+    "hora": "20:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 45,
+    "date": "20/03/2026",
+    "hora": "22:00",
+    "editoria": "Rebranding",
+    "resp": "G4",
+    "pauta": "Carrossel Paleta de cores G4",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 46,
+    "date": "21/03/2026",
+    "hora": "07:00",
+    "editoria": "Legado",
+    "resp": "G4",
+    "pauta": "Prêmio CX com insights",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 47,
+    "date": "21/03/2026",
+    "hora": "09:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Framework",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 48,
+    "date": "21/03/2026",
+    "hora": "12:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 49,
+    "date": "21/03/2026",
+    "hora": "15:00",
+    "editoria": "Ecossistema G4",
+    "resp": "G4",
+    "pauta": "Solicitar prova social *",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 50,
+    "date": "21/03/2026",
+    "hora": "18:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 51,
+    "date": "21/03/2026",
+    "hora": "20:00",
+    "editoria": "IA",
+    "resp": "G4",
+    "pauta": "Corte de Podcast",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 52,
+    "date": "21/03/2026",
+    "hora": "22:00",
+    "editoria": "Rebranding",
+    "resp": "G4",
+    "pauta": "Expedition",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 53,
+    "date": "22/03/2026",
+    "hora": "07:00",
+    "editoria": "IA",
+    "resp": "G4",
+    "pauta": "Tallis Gomes",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 54,
+    "date": "22/03/2026",
+    "hora": "09:00",
+    "editoria": "Erro ao aprendizado",
+    "resp": "G4",
+    "pauta": "Guia Michelin",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 55,
+    "date": "22/03/2026",
+    "hora": "12:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 56,
+    "date": "22/03/2026",
+    "hora": "15:00",
+    "editoria": "Ecossistema G4",
+    "resp": "G4",
+    "pauta": "Solicitar prova social *",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 57,
+    "date": "22/03/2026",
+    "hora": "18:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Framework",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 58,
+    "date": "22/03/2026",
+    "hora": "20:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  },
+  {
+    "id": 59,
+    "date": "22/03/2026",
+    "hora": "22:00",
+    "editoria": "Rebranding",
+    "resp": "G4",
+    "pauta": "",
+    "status": "",
+    "link": ""
+  }
+]
