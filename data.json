@@ -295,7 +295,7 @@
     "hora": "07:00",
     "editoria": "IA",
     "resp": "INC",
-    "pauta": "Video organico Wes 222222",
+    "pauta": "Video organico Wes",
     "status": "",
     "link": ""
   },
@@ -558,5 +558,15 @@
     "link": "",
     "status": "",
     "id": 66
+  },
+  {
+    "date": "19/03/2026",
+    "hora": "18:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Bold",
+    "link": "",
+    "status": "",
+    "id": 67
   }
 ]
