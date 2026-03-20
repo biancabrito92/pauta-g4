@@ -170,32 +170,12 @@
     "link": ""
   },
   {
-    "id": 18,
-    "date": "17/03/2026",
-    "hora": "07:00",
-    "editoria": "Erro ao aprendizado",
-    "resp": "G4",
-    "pauta": "Anthropic",
-    "status": "",
-    "link": ""
-  },
-  {
-    "id": 19,
-    "date": "17/03/2026",
-    "hora": "09:00",
-    "editoria": "Radar do empresário",
-    "resp": "INC",
-    "pauta": "Framework",
-    "status": "",
-    "link": ""
-  },
-  {
     "id": 20,
     "date": "17/03/2026",
     "hora": "12:00",
     "editoria": "Radar do empresário",
     "resp": "INC",
-    "pauta": "",
+    "pauta": "Supreme",
     "status": "",
     "link": ""
   },
@@ -230,16 +210,6 @@
     "link": ""
   },
   {
-    "id": 24,
-    "date": "17/03/2026",
-    "hora": "00:00",
-    "editoria": "Rebranding",
-    "resp": "G4",
-    "pauta": "Misa",
-    "status": "",
-    "link": ""
-  },
-  {
     "id": 25,
     "date": "18/03/2026",
     "hora": "07:00",
@@ -255,7 +225,7 @@
     "hora": "09:00",
     "editoria": "Radar do empresário",
     "resp": "INC",
-    "pauta": "",
+    "pauta": "Nunca justifique seu preço",
     "status": "",
     "link": ""
   },
@@ -263,9 +233,9 @@
     "id": 27,
     "date": "18/03/2026",
     "hora": "12:00",
-    "editoria": "Radar do empresário",
+    "editoria": "Erro ao aprendizado",
     "resp": "INC",
-    "pauta": "",
+    "pauta": "Eskimo",
     "status": "",
     "link": ""
   },
@@ -273,9 +243,9 @@
     "id": 28,
     "date": "18/03/2026",
     "hora": "15:00",
-    "editoria": "Rebranding",
+    "editoria": "Ecossistema G4",
     "resp": "G4",
-    "pauta": "(branding)",
+    "pauta": "Prova Social - Felipe Danella",
     "status": "",
     "link": ""
   },
@@ -290,62 +260,12 @@
     "link": ""
   },
   {
-    "id": 30,
-    "date": "18/03/2026",
-    "hora": "21:00",
-    "editoria": "Erro ao aprendizado",
-    "resp": "G4",
-    "pauta": "Vick",
-    "status": "",
-    "link": ""
-  },
-  {
-    "id": 31,
-    "date": "18/03/2026",
-    "hora": "00:00",
-    "editoria": "Ecossistema G4",
-    "resp": "G4",
-    "pauta": "Solicitar prova social *",
-    "status": "",
-    "link": ""
-  },
-  {
     "id": 32,
     "date": "19/03/2026",
     "hora": "07:00",
-    "editoria": "Radar do empresário",
-    "resp": "INC",
-    "pauta": "Framework",
-    "status": "",
-    "link": ""
-  },
-  {
-    "id": 33,
-    "date": "19/03/2026",
-    "hora": "09:00",
-    "editoria": "Radar do empresário",
-    "resp": "INC",
-    "pauta": "",
-    "status": "",
-    "link": ""
-  },
-  {
-    "id": 34,
-    "date": "19/03/2026",
-    "hora": "12:00",
     "editoria": "Erro ao aprendizado",
     "resp": "INC",
-    "pauta": "Starbucks",
-    "status": "",
-    "link": ""
-  },
-  {
-    "id": 35,
-    "date": "19/03/2026",
-    "hora": "15:00",
-    "editoria": "Ecossistema G4",
-    "resp": "G4",
-    "pauta": "Club",
+    "pauta": "Anthropic",
     "status": "",
     "link": ""
   },
@@ -355,27 +275,17 @@
     "hora": "18:00",
     "editoria": "IA",
     "resp": "G4",
-    "pauta": "Tallis Gomes",
+    "pauta": "Tallis",
     "status": "",
     "link": ""
   },
   {
     "id": 37,
     "date": "19/03/2026",
-    "hora": "21:00",
-    "editoria": "Radar do empresário",
+    "hora": "20:00",
+    "editoria": "Erro ao aprendizado",
     "resp": "INC",
-    "pauta": "",
-    "status": "",
-    "link": ""
-  },
-  {
-    "id": 38,
-    "date": "19/03/2026",
-    "hora": "00:00",
-    "editoria": "Rebranding",
-    "resp": "G4",
-    "pauta": "Nardon",
+    "pauta": "A barrinha de 1bi - Bold Snacks",
     "status": "",
     "link": ""
   },
@@ -385,17 +295,7 @@
     "hora": "07:00",
     "editoria": "IA",
     "resp": "INC",
-    "pauta": "",
-    "status": "",
-    "link": ""
-  },
-  {
-    "id": 40,
-    "date": "20/03/2026",
-    "hora": "09:00",
-    "editoria": "Radar do empresário",
-    "resp": "INC",
-    "pauta": "",
+    "pauta": "Joao Vitor",
     "status": "",
     "link": ""
   },
@@ -405,7 +305,7 @@
     "hora": "12:00",
     "editoria": "Erro ao aprendizado",
     "resp": "G4",
-    "pauta": "Lovable",
+    "pauta": "Starbucks",
     "status": "",
     "link": ""
   },
@@ -415,17 +315,7 @@
     "hora": "15:00",
     "editoria": "Ecossistema G4",
     "resp": "G4",
-    "pauta": "Solicitar prova social *",
-    "status": "",
-    "link": ""
-  },
-  {
-    "id": 43,
-    "date": "20/03/2026",
-    "hora": "18:00",
-    "editoria": "IA",
-    "resp": "G4",
-    "pauta": "G4OS João Victor",
+    "pauta": "Prova Social",
     "status": "",
     "link": ""
   },
@@ -435,7 +325,7 @@
     "hora": "20:00",
     "editoria": "Radar do empresário",
     "resp": "INC",
-    "pauta": "",
+    "pauta": "INC",
     "status": "",
     "link": ""
   },
@@ -505,7 +395,7 @@
     "hora": "20:00",
     "editoria": "IA",
     "resp": "G4",
-    "pauta": "Corte de Podcast",
+    "pauta": "Video Joao",
     "status": "",
     "link": ""
   },
@@ -588,5 +478,155 @@
     "pauta": "",
     "status": "",
     "link": ""
+  },
+  {
+    "date": "18/03/2026",
+    "hora": "20:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Fifa",
+    "link": "",
+    "status": "",
+    "id": 60
+  },
+  {
+    "date": "19/03/2026",
+    "hora": "09:00",
+    "editoria": "Ferramentas para crescer",
+    "resp": "INC",
+    "pauta": "Framework IA",
+    "link": "",
+    "status": "",
+    "id": 61
+  },
+  {
+    "date": "19/03/2026",
+    "hora": "12:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "Vendedor bonzinho x vendedor agressivo",
+    "link": "",
+    "status": "",
+    "id": 62
+  },
+  {
+    "date": "19/03/2026",
+    "hora": "15:00",
+    "editoria": "Rebranding",
+    "resp": "INC",
+    "pauta": "Barão de Mauá",
+    "link": "",
+    "status": "",
+    "id": 63
+  },
+  {
+    "date": "19/03/2026",
+    "hora": "22:00",
+    "editoria": "Rebranding",
+    "resp": "INC",
+    "pauta": "Prova Social - Club",
+    "link": "",
+    "status": "",
+    "id": 64
+  },
+  {
+    "date": "20/03/2026",
+    "hora": "18:00",
+    "editoria": "Ecossistema G4",
+    "resp": "INC",
+    "pauta": "Pink Cheeks - Timing",
+    "link": "",
+    "status": "",
+    "id": 65
+  },
+  {
+    "date": "17/03/2026",
+    "hora": "07:00",
+    "editoria": "Ferramentas para crescer",
+    "resp": "INC",
+    "pauta": "Framework",
+    "link": "",
+    "status": "",
+    "id": 66
+  },
+  {
+    "date": "20/03/2026",
+    "hora": "09:00",
+    "editoria": "Radar do empresário",
+    "resp": "INC",
+    "pauta": "ARQUIVADO",
+    "link": "",
+    "status": "",
+    "id": 67
+  },
+  {
+    "date": "23/03/2026",
+    "hora": "15:00",
+    "editoria": "Ecossistema G4",
+    "resp": "INC",
+    "pauta": "Prova Social",
+    "link": "",
+    "status": "",
+    "id": 68
+  },
+  {
+    "date": "24/03/2026",
+    "hora": "15:00",
+    "editoria": "Ecossistema G4",
+    "resp": "INC",
+    "pauta": "Prova Social",
+    "link": "",
+    "status": "",
+    "id": 69
+  },
+  {
+    "date": "25/03/2026",
+    "hora": "15:00",
+    "editoria": "Ecossistema G4",
+    "resp": "INC",
+    "pauta": "Prova Social",
+    "link": "",
+    "status": "",
+    "id": 70
+  },
+  {
+    "date": "26/03/2026",
+    "hora": "15:00",
+    "editoria": "Ecossistema G4",
+    "resp": "INC",
+    "pauta": "Prova Social",
+    "link": "",
+    "status": "",
+    "id": 71
+  },
+  {
+    "date": "27/03/2026",
+    "hora": "15:00",
+    "editoria": "Ecossistema G4",
+    "resp": "INC",
+    "pauta": "Prova Social",
+    "link": "",
+    "status": "",
+    "id": 72
+  },
+  {
+    "date": "28/03/2026",
+    "hora": "15:00",
+    "editoria": "Ecossistema G4",
+    "resp": "INC",
+    "pauta": "Prova Social",
+    "link": "",
+    "status": "",
+    "id": 73
+  },
+  {
+    "date": "29/03/2026",
+    "hora": "15:00",
+    "editoria": "Ecossistema G4",
+    "resp": "INC",
+    "pauta": "Prova social",
+    "link": "",
+    "status": "",
+    "id": 74
   }
 ]
