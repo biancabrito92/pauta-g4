@@ -312,17 +312,17 @@
   {
     "id": 42,
     "date": "20/03/2026",
-    "hora": "20:00",
+    "hora": "15:00",
     "editoria": "Ecossistema G4",
     "resp": "G4",
-    "pauta": "Prova Social - Brenda Lezie",
+    "pauta": "Prova Social",
     "status": "",
     "link": ""
   },
   {
     "id": 44,
     "date": "20/03/2026",
-    "hora": "15:00",
+    "hora": "20:00",
     "editoria": "Radar do empresário",
     "resp": "INC",
     "pauta": "INC",
@@ -531,7 +531,7 @@
   },
   {
     "date": "20/03/2026",
-    "hora": "18:00",
+    "hora": "19:00",
     "editoria": "Ecossistema G4",
     "resp": "INC",
     "pauta": "Pink Cheeks - Timing",
