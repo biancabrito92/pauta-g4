@@ -313,9 +313,9 @@
     "id": 42,
     "date": "20/03/2026",
     "hora": "15:00",
-    "editoria": "Ferramentas para crescer",
+    "editoria": "Ecossistema G4",
     "resp": "G4",
-    "pauta": "Framework",
+    "pauta": "Prova Social",
     "status": "",
     "link": ""
   },
@@ -323,9 +323,9 @@
     "id": 44,
     "date": "20/03/2026",
     "hora": "20:00",
-    "editoria": "Ecossistema G4",
+    "editoria": "Radar do empresário",
     "resp": "INC",
-    "pauta": "Prova social",
+    "pauta": "INC",
     "status": "",
     "link": ""
   },
