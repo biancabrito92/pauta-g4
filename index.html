@@ -867,6 +867,16 @@ const LS_CACHE = 'g4-pauta-mar26v3';
 
 function getToken() { return localStorage.getItem(LS_TOKEN) || ''; }
 
+// Base64 UTF-8 seguro (suporta acentos e caracteres especiais)
+function b64Encode(str) {
+  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+    (_, p1) => String.fromCharCode('0x' + p1)));
+}
+function b64Decode(b64) {
+  return decodeURIComponent(atob(b64).split('').map(
+    c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+}
+
 let currentSha = null; // SHA do data.json que carregamos — rastreia versão
 
 async function ghLoad() {
@@ -878,10 +888,19 @@ async function ghLoad() {
     if (!r.ok) throw new Error('fetch failed');
     const json = await r.json();
     currentSha = json.sha;
-    const data = JSON.parse(atob(json.content.replace(/\n/g,'')));
+    const data = JSON.parse(b64Decode(json.content.replace(/\n/g,'')));
     localStorage.setItem(LS_CACHE, JSON.stringify(data));
     return data;
   } catch(e) {
+    // fallback ao raw URL (sem autenticação, sem encoding problemático)
+    try {
+      const r2 = await fetch(GH_RAW + '?t=' + Date.now());
+      if (r2.ok) {
+        const data = await r2.json();
+        localStorage.setItem(LS_CACHE, JSON.stringify(data));
+        return data;
+      }
+    } catch(_) {}
     // fallback ao cache local
     try {
       const s = localStorage.getItem(LS_CACHE);
@@ -932,7 +951,7 @@ async function ghSave(data) {
     // Se SHA remoto mudou desde que carregamos → alguém editou; mescla antes de salvar
     if (currentSha && remoteSha !== currentSha) {
       showSyncBadge('⚠ Mesclando edições…');
-      const remoteData = JSON.parse(atob(metaJson.content.replace(/\n/g,'')));
+      const remoteData = JSON.parse(b64Decode(metaJson.content.replace(/\n/g,'')));
       dataToSave = mergePosts(data, remoteData);
       posts = dataToSave;
       nextId = Math.max(...posts.map(p => p.id)) + 1;
@@ -941,7 +960,7 @@ async function ghSave(data) {
 
     const body = {
       message: 'update: pauta via app ' + new Date().toLocaleString('pt-BR'),
-      content: btoa(unescape(encodeURIComponent(JSON.stringify(dataToSave, null, 2)))),
+      content: b64Encode(JSON.stringify(dataToSave, null, 2)),
       sha: remoteSha
     };
     const res = await fetch(GH_API, {
